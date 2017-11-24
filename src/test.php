@@ -1,6 +1,6 @@
 <?php 
 require '../vendor/autoload.php';
-$client = new GuzzleHttp\Client();
+$client = new \GuzzleHttp\Client(['verify' => false]);
 ?>
 <html>
  <head>
