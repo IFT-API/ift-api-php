@@ -13,7 +13,9 @@ $client = new \GuzzleHttp\Client(['verify' => false]); // verify = false added t
  <p><strong>GET /api/hello :</strong></p>
  <?php
 
- $res = $client->get('https://ift-api.herokuapp.com/api/hello');
+ $server_url = 'https://alim-pprd.agriculture.gouv.fr/ift-api';
+
+ $res = $client->get($server_url.'/api/hello');
  echo '<p>'.json_decode($res->getBody())->message.'</p>'
 
  ?>
@@ -23,7 +25,7 @@ $client = new \GuzzleHttp\Client(['verify' => false]); // verify = false added t
  <p><strong>GET /api/campagnes :</strong></p>
  <?php
 
- $res = $client->get('https://ift-api.herokuapp.com/api/campagnes');
+ $res = $client->get($server_url.'/api/campagnes');
  echo '<p>'.$res->getBody().'</p>'
 
  ?>
@@ -33,35 +35,40 @@ $client = new \GuzzleHttp\Client(['verify' => false]); // verify = false added t
  <p><strong>GET /api/campagnes/2017 :</strong></p>
  <?php
 
- $res = $client->get('https://ift-api.herokuapp.com/api/campagnes/2017');
+ $res = $client->get($server_url.'/api/campagnes/2017');
  echo '<p>'.$res->getBody().'</p>'
 
  ?>
 
 
 
- <p><strong>GET /api/produits-doses-reference?campagneId={campagneId}&cultureId={cultureId}&produitId={produitId} :</strong></p>
+ <p><strong>GET /api/produits-doses-reference?campagneIdMetier={campagneIdMetier}&cultureIdMetier={cultureIdMetier}&produitLibelle={produitLibelle} :</strong></p>
  <?php
 
- $res = $client->get('https://ift-api.herokuapp.com/api/produits-doses-reference?campagneId=e02b1e37-669b-497e-be4c-e8b9359cb587&cultureId=6f288e46-ead7-491d-9213-b498dcf82329&produitId=64fa2f66-9cd6-46af-8ff0-2882edcfd869');
+ $res = $client->get($server_url.'/api/produits-doses-reference?'
+    .'campagneIdMetier=2018'
+    .'&cultureIdMetier=1161'
+    .'&produitLibelle=BOUILLIE%20CAZORLA%2020%20PM'
+    .'&type=culture'
+ );
  echo '<p>'.$res->getBody().'</p>'
 
  ?>
 
 
 
- <p><strong>GET /api/ift/traitement?campagneId={campagneId}&numeroAmmId={numeroAmmId}&cultureId={cultureId}&cibleId={cibleId}&traitementId={traitementId}&uniteId={uniteId}&dose={dose}&facteurDeCorrection={facteurDeCorrection} :</strong></p>
+ <p><strong>GET /api/ift/traitement?campagneIdMetier={campagneIdMetier}&numeroAmmIdMetier={numeroAmmIdMetier}&cultureIdMetier={cultureIdMetier}&cibleIdMetier={cibleIdMetier}&typeTraitementIdMetier={typeTraitementIdMetier}&uniteIdMetier={uniteIdMetier}&dose={dose}&facteurDeCorrection={facteurDeCorrection} :</strong></p>
  <?php
 
- $res = $client->get('https://ift-api.herokuapp.com/api/ift/traitement?'
-    .'campagneId=e02b1e37-669b-497e-be4c-e8b9359cb587'
-    .'&numeroAmmId=d76038c9-c456-4487-91ea-3fa1a8853978'
-    .'&cultureId=6f288e46-ead7-491d-9213-b498dcf82329'
-    .'&cibleId=19cc0b09-7d11-4ddf-848d-4f6c94a4febd'
-    .'&traitementId=f4dd98e2-0638-4912-86ed-8cc3a9e9d728'
-    .'&uniteId=d57ca2cc-a3ba-4bff-bae7-0d0bde82a0e3'
-    .'&dose=0.06'
-    .'&facteurDeCorrection=100'
+ $res = $client->get($server_url.'/api/ift/traitement?'
+    .'campagneIdMetier=2018'
+    .'&numeroAmmIdMetier=9900206'
+    .'&cultureIdMetier=1161'
+    .'&cibleIdMetier=82'
+    .'&typeTraitementIdMetier=T22'
+    .'&uniteIdMetier=U3'
+    .'&dose=0.5'
+    .'&facteurDeCorrection=60'
 );
  echo '<p>'.$res->getBody().'</p>'
 
